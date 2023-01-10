@@ -49,18 +49,12 @@ namespace MySalonWeb.Controllers
             return View("booking");
         }
 
-        //[HttpPost]
-        //public IActionResult Booking(BookingModel model)
-        //{
-        //    Debug.WriteLine(model.Name);
-        //    Debug.WriteLine(model.Surename);
-        //    Debug.WriteLine(model.Phone);
-        //    Debug.WriteLine(model.Email);
-        //    Debug.WriteLine(model.Service);
-        //    Debug.WriteLine(model.Date);
-
-        //    return View("Success");
-        //}
+        [Route("/booking/order")]
+        [HttpPost]
+        public IActionResult Order(BookingViewModel bookingViewModel)
+        {
+            return View();
+        }
 
 
         [Route("/experts")]
@@ -107,12 +101,12 @@ namespace MySalonWeb.Controllers
         }
 
         [HttpGet, HttpPost]
-        public PartialViewResult? GetTime(string id)
+        public PartialViewResult? GetTime(string id, string date)
         {
 
-            ViewBag.ServiceDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceName");
+            ViewBag.ServiceDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceTime");
 
-            return PartialView("_PartViewBooking1");
+            return PartialView("_PartViewBooking2");
         }
 
     }

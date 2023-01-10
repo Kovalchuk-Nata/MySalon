@@ -143,10 +143,29 @@
 
               });
 
-            $('#ServiceName #Services').change(function () {
-                alert("change  ")
+
+            $(document).on('change', '#Services', function (e) {
+                var select = (this);
+                var indexSelected = select.selectedIndex;
+                var pickedDate = $("#date").val();
+                alert(indexSelected + " " + pickedDate);
+
+
+                
             });
 
+            $(document).on('change', '#date', function (e) {
+                var select = (this);
+                var indexSelected = select.selectedIndex;
+                var pickedDate = $("#date").val();
+                alert(indexSelected + " " + pickedDate);
+
+
+
+            });
+
+
+           
                        
 
         </script>

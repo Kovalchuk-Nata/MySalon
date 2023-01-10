@@ -8,6 +8,5 @@ namespace MySalonWeb.ViewModels
         public Order Order { get; set; }
         public ServiceTypes ServiceType { get; set; }
         public string Time { get; set; } //timetable
-
     }
 }
