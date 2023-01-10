@@ -1,4 +1,6 @@
-﻿namespace MySalonWeb.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MySalonWeb.Models
 {
     public class Order
     {
@@ -8,8 +10,11 @@
 
         public int ServiceId { get; set; }
         public Service? Services { get; set; }
-        
-        public DateTime OrderDateTime { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime OrderDate { get; set; }
+
+        public int OrderTime { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using MySalonWeb.Domain;
 using MySalonWeb.Models;
 using MySalonWeb.ViewModels;
 using System.Diagnostics;
+using System.Linq;
 using static System.Collections.Specialized.BitVector32;
 
 namespace MySalonWeb.Controllers
@@ -42,7 +43,13 @@ namespace MySalonWeb.Controllers
         [HttpPost]
         public IActionResult Booking(BookingViewModel bookingViewModel)
         {
-            salonDb.Clients.Add(bookingViewModel.Client);
+            Client client = bookingViewModel.Client;
+            salonDb.Clients.Add(client);
+            salonDb.SaveChanges();
+
+            Order order = bookingViewModel.Order;
+            order.ClientId = client.Id;
+            order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
             salonDb.Orders.Add(bookingViewModel.Order);
             salonDb.SaveChanges();
 
@@ -101,13 +108,41 @@ namespace MySalonWeb.Controllers
         }
 
         [HttpGet, HttpPost]
-        public PartialViewResult? GetTime(string id, string date)
+        public PartialViewResult? GetTimeAndPrice2(string id, string date)
         {
 
-            ViewBag.ServiceDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceTime");
+                                
+            ViewBag.Price =  from m in salonDb.Services where m.Id == Int32.Parse(id) select m.Price;
+
+            // Convert.ToDateTime(bookingViewModel.Date)
+
+            ViewBag.Date = date;
 
             return PartialView("_PartViewBooking2");
         }
+
+        [HttpGet, HttpPost]
+        public PartialViewResult? GetTimeAndPrice(string id, string date)
+        {
+
+            ViewBag.Price = salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))?.Price; // ловим цену на услугу
+            ViewBag.Date = date;
+
+            var dateBooking = Convert.ToDateTime(date);
+
+            var listOfDate = salonDb.Orders.Where(s => (int)s.ServiceId == Int32.Parse(id) && s.OrderDate == dateBooking).ToList();
+
+            return PartialView("_PartViewBooking2");
+        }
+
+
+        /*public GetTimeTable(int date, int period)
+        {
+            GetTimeTable();
+        period + 10
+            ViewBag.TimeDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceTime");
+        }
+        */
 
     }
 }

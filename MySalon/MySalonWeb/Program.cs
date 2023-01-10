@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using MySalonWeb.Domain;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,21 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+var supportedCultures = new[]
+            {
+                new CultureInfo("ru-RU"),
+                new CultureInfo("ru")
+            };
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("ru-RU"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
+
+
+
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(

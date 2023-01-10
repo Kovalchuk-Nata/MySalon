@@ -106,6 +106,7 @@
 
                 <div id="ServiceName"> </div>
                 <div id="ServiceTime"> </div>
+                <div id="ServicePrice"> </div>
                 
                 <button class="btn btn-primary " type="submit">Booking</button>
             </form>
@@ -121,54 +122,86 @@
                   var select = (this);
                   var indexSelected = select.selectedIndex;
 
-                  if (indexSelected == 0) {
-                      $('.formConfig').empty();
-                      }
-                  else {
-                      $.ajax(
-                          {
-                              type: 'post',
-                              url: '@Url.Action("GetConfigForm", "Home")?id=' + indexSelected,
-                              data: {},
-                              dataType: 'html',
-                              success: function (response) {
-                                $('#ServiceName').empty();
-                                $('#ServiceName').append(response);
-                              },
-                              error: function (data) {
-                                  console.log('error: ', data);
-                              }
-                          })
-                  }
+                $.ajax(
+                {
+                    type: 'post',
+                    url: '@Url.Action("GetConfigForm", "Home")?id=' + indexSelected,
+                    data: {},
+                    dataType: 'html',
+                    success: function (response) {
+                    $('#ServiceName').empty();
+                    $('#ServiceName').append(response);
+                    },
+                    error: function (data) {
+                        console.log('error: ', data);
+                    }
+                })
+                  
 
               });
 
 
-            $(document).on('change', '#Services', function (e) {
+            $(document).on('change', '#Order_ServiceId', function (e) {
                 var select = (this);
                 var indexSelected = select.selectedIndex;
                 var pickedDate = $("#date").val();
-                alert(indexSelected + " " + pickedDate);
-
-
+                console.log(indexSelected);
+                console.log(pickedDate);
+                  if (indexSelected && pickedDate != 0) {
+                    $.ajax(
+                        {
+                            type: 'post',
+                            url: '@Url.Action("GetTimeAndPrice", "Home")?id=' + indexSelected + '&date=' + pickedDate,
+                            data: {},
+                            dataType: 'html',
+                            success: function (response) {
+                            $('#ServiceTime').append(response);
+                            },
+                            error: function (data) {
+                                console.log('error: ', data);
+                            }
+                        })
+                  }
+                else { console.log("Enter data or service"); }
                 
             });
 
             $(document).on('change', '#date', function (e) {
-                var select = (this);
-                var indexSelected = select.selectedIndex;
+                var indexSelected = $('#Order_ServiceId').val();
                 var pickedDate = $("#date").val();
-                alert(indexSelected + " " + pickedDate);
-
-
+                console.log(indexSelected);
+                console.log(pickedDate);
+                if (indexSelected && pickedDate != 0) {
+                    $.ajax(
+                        {
+                            type: 'post',
+                            url: '@Url.Action("GetTimeAndPrice", "Home")?id=' + indexSelected + '&date=' + pickedDate,
+                            data: {},
+                            dataType: 'html',
+                            success: function (response) {
+                                $('#ServiceTime').append(response);
+                            },
+                            error: function (data) {
+                                console.log('error: ', data);
+                            }
+                        })
+                }
+                else { console.log("Enter data or service"); }
 
             });
-
-
-           
-                       
-
         </script>
 }
 }
-    
+    @*$.ajax(
+                    {
+                        type: 'post',
+                        url: '@Url.Action("GetPrice", "Home")?id=' + indexSelected,
+                        data: {},
+                        dataType: 'html',
+                        success: function (response) {
+                            $('#ServiceName').append(response);
+                        },
+                        error: function (data) {
+                            console.log('error: ', data);
+                        }
+                })*@
