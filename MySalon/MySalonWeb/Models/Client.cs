@@ -14,6 +14,7 @@ namespace MySalonWeb.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string Surname { get; set; }
 
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 

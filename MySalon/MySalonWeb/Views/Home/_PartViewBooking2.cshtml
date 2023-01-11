@@ -1,14 +1,16 @@
 ﻿@using MySalonWeb.ViewModels;
 @model BookingViewModel
 
-<div asp-validation-summary="All" class="text-service-name"></div>
-    <div class="form-group">
+
+<div asp-validation-summary="All" class="text-time-name"></div>
+<div class="form-group">
+    <select asp-for="@Model.Order.OrderTime" asp-items="@ViewBag.TimeDictionary" class="form-control">
+    </select>
+</div>
+<div class="form-group">
     <label>Price:</label>
     <p class="form-control">@ViewBag.Price</p>
-     </div>
-
-<div class="form-group">
-    <label>Date:</label>
-    <p class="form-control">@ViewBag.Date</p>
 </div>
+
+
 

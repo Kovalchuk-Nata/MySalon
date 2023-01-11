@@ -43,17 +43,24 @@ namespace MySalonWeb.Controllers
         [HttpPost]
         public IActionResult Booking(BookingViewModel bookingViewModel)
         {
-            Client client = bookingViewModel.Client;
-            salonDb.Clients.Add(client);
-            salonDb.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                Client client = bookingViewModel.Client;
+                var clientId = salonDb.Clients.FirstOrDefault(s => s.Phone == client.Phone)?.Id;
+                if (clientId == null)
+                {
+                    salonDb.Clients.Add(client);
+                    salonDb.SaveChanges();
+                }
 
-            Order order = bookingViewModel.Order;
-            order.ClientId = client.Id;
-            order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
-            salonDb.Orders.Add(bookingViewModel.Order);
-            salonDb.SaveChanges();
+                Order order = bookingViewModel.Order;
+                order.ClientId = clientId ?? client.Id;
+                order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
+                salonDb.Orders.Add(bookingViewModel.Order);
+                salonDb.SaveChanges();
+            }
 
-            return View("booking");
+                return View(bookingViewModel);
         }
 
         [Route("/booking/order")]
@@ -108,40 +115,58 @@ namespace MySalonWeb.Controllers
         }
 
         [HttpGet, HttpPost]
-        public PartialViewResult? GetTimeAndPrice2(string id, string date)
-        {
-
-                                
-            ViewBag.Price =  from m in salonDb.Services where m.Id == Int32.Parse(id) select m.Price;
-
-            // Convert.ToDateTime(bookingViewModel.Date)
-
-            ViewBag.Date = date;
-
-            return PartialView("_PartViewBooking2");
-        }
-
-        [HttpGet, HttpPost]
         public PartialViewResult? GetTimeAndPrice(string id, string date)
         {
-
-            ViewBag.Price = salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))?.Price; // ловим цену на услугу
+            // ловим цену на услугу
+            ViewBag.Price = salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))?.Price;
             ViewBag.Date = date;
 
+            // массив со всеми записями
             var dateBooking = Convert.ToDateTime(date);
-
             var listOfDate = salonDb.Orders.Where(s => (int)s.ServiceId == Int32.Parse(id) && s.OrderDate == dateBooking).ToList();
 
+            // создаем масив время
+            int period = ((int)(salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))!.Period));
+            int startTime = 10;
+            int countTime = 10 / period;
+
+            var arrayOfTime = new int[countTime];
+            for (int i = 0; i < countTime; i++)
+            {
+                arrayOfTime[i] = startTime;
+                startTime += period;
+            }
+            var matchedItems = arrayOfTime.ToList();
+            List<int> result = arrayOfTime.ToList();
+
+            foreach (var i in matchedItems)
+            {
+                
+                if (listOfDate.Exists(item => item.OrderTime == i) == true)
+                {
+                    result.Remove(i);
+                }
+                else { continue; }
+            }
+
+            var items = result.Select(item => new SelectListItem
+            {
+                Text = item.ToString(),
+                Value = item.ToString()
+            });
+
+
+            //ViewBag.TimeDictionary = new SelectList(salonDb.Orders.Where(s => (int)s.ServiceId == Int32.Parse(id) && s.OrderDate == dateBooking), "Id", "OrderTime");
+            //ViewBag.TimeDictionary = new SelectList(result.AsEnumerable(), "Id", "OrderTime");
+            ViewBag.TimeDictionary = items;
             return PartialView("_PartViewBooking2");
         }
 
 
-        /*public GetTimeTable(int date, int period)
-        {
-            GetTimeTable();
-        period + 10
-            ViewBag.TimeDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceTime");
-        }
+        /*
+         // создаем масив время
+            var arrayOfTime = new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+            var matchedItems = Array.FindAll(arrayOfTime, time => time + period >= 11 && time + period <= 20).ToList(); 
         */
 
     }
