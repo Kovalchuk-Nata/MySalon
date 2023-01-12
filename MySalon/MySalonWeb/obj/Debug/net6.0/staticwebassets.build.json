@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5Q6qa93KQ6qKKWSMxmu1950EHmuIjm2Syezqkta8nF4=",
+  "Hash": "8Lt37lelYbeoWKlG9nqcMX8K1gjbaK8XjiTT8wTStIM=",
   "Source": "MySalonWeb",
   "BasePath": "_content/MySalonWeb",
   "Mode": "Default",
@@ -1411,6 +1411,23 @@
       "OriginalItemSpec": "wwwroot\\img\\core-img\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\head_logo.png",
+      "SourceId": "MySalonWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\",
+      "BasePath": "_content/MySalonWeb",
+      "RelativePath": "img/core-img/head_logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\core-img\\head_logo.png"
+    },
+    {
       "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\logo.png",
       "SourceId": "MySalonWeb",
       "SourceType": "Discovered",
@@ -1426,6 +1443,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\core-img\\logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\main_logo.png",
+      "SourceId": "MySalonWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\",
+      "BasePath": "_content/MySalonWeb",
+      "RelativePath": "img/core-img/main_logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\core-img\\main_logo.png"
     },
     {
       "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\quote.png",

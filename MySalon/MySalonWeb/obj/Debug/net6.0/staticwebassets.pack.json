@@ -325,8 +325,16 @@
       "PackagePath": "staticwebassets\\img\\core-img\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\head_logo.png",
+      "PackagePath": "staticwebassets\\img\\core-img\\head_logo.png"
+    },
+    {
       "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\logo.png",
       "PackagePath": "staticwebassets\\img\\core-img\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\main_logo.png",
+      "PackagePath": "staticwebassets\\img\\core-img\\main_logo.png"
     },
     {
       "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\core-img\\quote.png",

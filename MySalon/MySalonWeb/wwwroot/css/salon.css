@@ -8,3 +8,38 @@
     margin: 0 20px;
     color: white;
 }
+
+.booking-form {
+    padding: 0 100px 100px 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.head-logo {
+    max-height: 100px;
+}
+
+.label-form {
+    font-family: "Playfair Display", serif, bold;
+}
+.bok-breadcrum {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.booking-section {
+    border: solid 1.5px #848483;
+    padding-top: 40px;
+}
+
+.btn-form {
+    background-color: #bca858;
+    border-color: #bca858;
+    width: 300px;
+}
+
+    .btn-form:hover {
+        color: #fff;
+        background-color: white;
+        border-color: black;

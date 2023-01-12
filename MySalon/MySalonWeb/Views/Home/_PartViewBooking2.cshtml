@@ -4,12 +4,13 @@
 
 <div asp-validation-summary="All" class="text-time-name"></div>
 <div class="form-group">
-    <select asp-for="@Model.Order.OrderTime" asp-items="@ViewBag.TimeDictionary" class="form-control">
+    <label class="label-form">Choose time:</label>
+    <select asp-for="@Model.Order.OrderTime" asp-items="@ViewBag.TimeDictionary" class="form-control label-form">
     </select>
 </div>
 <div class="form-group">
-    <label>Price:</label>
-    <p class="form-control">@ViewBag.Price</p>
+    <label class="label-form">Price for @ViewBag.ServiceName:</label>
+    <p class="form-control label-form">@ViewBag.Price$</p>
 </div>
 
 

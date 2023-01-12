@@ -119,8 +119,9 @@ namespace MySalonWeb.Controllers
         [HttpGet, HttpPost]
         public PartialViewResult? GetTimeAndPrice(string id, string date)
         {
-            // ловим цену на услугу
+            // ловим цену на услугу 
             ViewBag.Price = salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))?.Price;
+            ViewBag.ServiceName = salonDb.Services.FirstOrDefault(s => s.Id == Int32.Parse(id))?.ServiceName;
             ViewBag.Date = date;
 
             // массив со всеми записями
