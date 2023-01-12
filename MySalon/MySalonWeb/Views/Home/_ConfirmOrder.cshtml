@@ -1,20 +1,20 @@
 ﻿@using MySalonWeb.ViewModels;
 @model BookingViewModel
 
-
+<h4 class="label-form">Your Order:</h4>
 <div class="form-group">
     <label class="label-form">Service:</label>
-    <p class="form-control label-form">@ViewBag.</p>
+    <p class="form-control label-form">@ViewBag.ServiceType: @ViewBag.ServiceName</p>
     </select>
 </div>
 <div class="form-group">
     <label class="label-form">Date:</label>
-    <p class="form-control label-form">@ViewBag.</p>
+    <p class="form-control label-form">@ViewBag.Date</p>
     </select>
 </div>
 <div class="form-group">
     <label class="label-form">Time:</label>
-    <p class="form-control label-form">@ViewBag.</p>
+    <p class="form-control label-form">@ViewBag.Time</p>
     </select>
 </div>
 <div class="form-group">
@@ -23,7 +23,8 @@
 </div>
 <div class="form-group">
     <label class="label-form">Your expert:</label>
-    <p class="form-control label-form">@ViewBag.Expert</p>
+    <p class="form-control label-form">Expert</p>
+    <button class="btn btn-primary label-form btn-form" type="submit">Confirm</button>
 </div>
 
 

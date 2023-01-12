@@ -16,7 +16,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="home"><i class="icon_house_alt"></i> Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Booking</li>
+                            <li class="breadcrumb-item active" aria-current="page">Booking</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,7 +33,7 @@
 <section class="breadcrumb-area booking-section">
     <div class="container booking-form">
         <div class="row">
-            
+            <div asp-validation-summary="All" class="text-danger"></div>
             <form asp-action="Booking" method="post">
                 <div class="form-group">
                     <label class="label-form">Name:</label>
@@ -68,11 +68,12 @@
                 <div id="ServiceTime"> </div>
                 
     
-                <button class="btn btn-primary label-form btn-form" type="submit">Booking</button>
+                <button type="submit" id="submitOrder" class="btn btn-primary label-form btn-form" disabled='disabled'>Booking</button>
             </form>
         </div>
         <div class="row">
             <img src="~/img/core-img/main_logo.png" alt="">
+            <div id="ConfirmOrder"> </div>
         </div>
     </div>
 
@@ -154,8 +155,12 @@
                         })
                 }
                 else { console.log("Enter data or service"); }
-
             });
+
+            $(document).on('change', '#chooseTime', function (e) {
+                $('#submitOrder').prop('disabled', !$(this).val());
+            }).trigger('change');
+
         </script>
 }
 }

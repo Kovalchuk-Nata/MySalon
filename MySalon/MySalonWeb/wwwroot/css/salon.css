@@ -40,6 +40,11 @@
 }
 
     .btn-form:hover {
-        color: #fff;
-        background-color: white;
-        border-color: black;
+        background-color: #bca858;
+        border-color: #bca858;
+    }
+
+.btn-form.disabled {
+    background-color: black;
+    border-color: black;
+}

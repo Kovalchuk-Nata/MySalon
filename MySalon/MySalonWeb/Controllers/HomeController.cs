@@ -47,8 +47,8 @@ namespace MySalonWeb.Controllers
         [HttpPost]
         public IActionResult Booking(BookingViewModel bookingViewModel)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 Client client = bookingViewModel.Client;
                 var clientId = salonDb.Clients.FirstOrDefault(s => s.Phone == client.Phone)?.Id;
                 if (clientId == null)
@@ -63,10 +63,11 @@ namespace MySalonWeb.Controllers
                 salonDb.Orders.Add(bookingViewModel.Order);
                 salonDb.SaveChanges();
                 Console.WriteLine("Success");
-                return View(bookingViewModel);  //View(bookingViewModel);
-            }
-            Console.WriteLine("Fail");
-            return View(bookingViewModel);
+                
+                return ReturnOrder(bookingViewModel);  //View(bookingViewModel);
+            //}
+            //Console.WriteLine("Fail");
+            //return View(bookingViewModel);
         }
 
         [Route("/booking/order")]
@@ -160,6 +161,16 @@ namespace MySalonWeb.Controllers
 
             ViewBag.TimeDictionary = items;
             return PartialView("_PartViewBooking2");
+        }
+
+        public PartialViewResult? ReturnOrder(BookingViewModel bookingViewModel)
+        {
+            ViewBag.ServiceType = bookingViewModel.ServiceType;
+            ViewBag.ServiceName = bookingViewModel.Order.Services.ServiceName;
+            ViewBag.Date = bookingViewModel.Order.OrderDate;
+            ViewBag.Time = bookingViewModel.Order.OrderTime;
+
+            return PartialView("_AccessOrder");
         }
 
     }

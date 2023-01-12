@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8Lt37lelYbeoWKlG9nqcMX8K1gjbaK8XjiTT8wTStIM=",
+  "Hash": "5E45tO71FRzS6w/koIkbHPfCwcDyd1S2Jbolaf8UexM=",
   "Source": "MySalonWeb",
   "BasePath": "_content/MySalonWeb",
   "Mode": "Default",
@@ -1324,6 +1324,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\bg-img\\90.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\bg-img\\91.png",
+      "SourceId": "MySalonWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\",
+      "BasePath": "_content/MySalonWeb",
+      "RelativePath": "img/bg-img/91.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\bg-img\\91.png"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\bg-img\\92.png",
+      "SourceId": "MySalonWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\",
+      "BasePath": "_content/MySalonWeb",
+      "RelativePath": "img/bg-img/92.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\bg-img\\92.png"
     },
     {
       "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\img\\bg-img\\cta.png",
