@@ -1,0 +1,26 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form method="post" asp-controller="Account" asp-action="Login">
+    <label> Username</label> 
+    <input type="text" placeholder="Username" asp-for="Username"></input>
+    <br>
+    <label> Password</label>
+    <input type="password" placeholder="password" asp-for="Password"></input>
+    <br>
+    <label>
+        <input type="checkbox" value="Login"></input>
+        Keep me logged In. 
+    </label>
+    <button type="submit">Log In</button>
+
+    @if (ViewData["ValidateMessage"] != null)
+    {
+        <br />
+        <br />
+        <label>@ViewData["ValidateMessage"]</label>
+    }
+</form>
+

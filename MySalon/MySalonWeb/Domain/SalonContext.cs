@@ -15,11 +15,5 @@ namespace MySalonWeb.Domain
         public DbSet<Order> Orders { get; set; } = default;
         public DbSet<Client> Clients { get; set; } = default;
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Service>().HasData(
-        //            new Service { Id = 1, ServiceType = "Hair Cuts and Style", ServiceName = "Women's Haircut", Price = 37 }
-        //    );
-        //}
     }
 }

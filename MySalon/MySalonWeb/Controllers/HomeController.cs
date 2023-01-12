@@ -6,6 +6,10 @@ using MySalonWeb.ViewModels;
 using System.Diagnostics;
 using System.Linq;
 using static System.Collections.Specialized.BitVector32;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MySalonWeb.Controllers
 {
@@ -21,7 +25,7 @@ namespace MySalonWeb.Controllers
             _logger = logger;
             salonDb = salonContext;
         }
-
+        
         public IActionResult Index()
         {
             return View();
@@ -58,9 +62,11 @@ namespace MySalonWeb.Controllers
                 order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
                 salonDb.Orders.Add(bookingViewModel.Order);
                 salonDb.SaveChanges();
+                Console.WriteLine("Success");
+                return View(bookingViewModel);  //View(bookingViewModel);
             }
-
-                return View(bookingViewModel);
+            Console.WriteLine("Fail");
+            return View(bookingViewModel);
         }
 
         [Route("/booking/order")]
@@ -100,10 +106,6 @@ namespace MySalonWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        //-------------------------------------------//
-
-
 
         [HttpGet, HttpPost]
         public PartialViewResult? GetConfigForm(string id)
@@ -155,19 +157,9 @@ namespace MySalonWeb.Controllers
                 Value = item.ToString()
             });
 
-
-            //ViewBag.TimeDictionary = new SelectList(salonDb.Orders.Where(s => (int)s.ServiceId == Int32.Parse(id) && s.OrderDate == dateBooking), "Id", "OrderTime");
-            //ViewBag.TimeDictionary = new SelectList(result.AsEnumerable(), "Id", "OrderTime");
             ViewBag.TimeDictionary = items;
             return PartialView("_PartViewBooking2");
         }
-
-
-        /*
-         // создаем масив время
-            var arrayOfTime = new int[] { 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
-            var matchedItems = Array.FindAll(arrayOfTime, time => time + period >= 11 && time + period <= 20).ToList(); 
-        */
 
     }
 }

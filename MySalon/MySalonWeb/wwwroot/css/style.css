@@ -2166,5 +2166,13 @@ input:focus {
 .single-contact-information p {
   margin-bottom: 0;
 }
+.top-content-flex p{
+    display: flex;
+    justify-content: flex-end;
+}
 
+.login-form a{
+    margin: 0 20px;
+    color: white;
+}
 /*# sourceMappingURL=style.css.map */

@@ -18,7 +18,6 @@ namespace MySalonWeb.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Phone]
         [Required]
         public int Phone { get; set; }
         public List<Order> Orders { get; set; }

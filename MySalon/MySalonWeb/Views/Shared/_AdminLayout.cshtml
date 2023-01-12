@@ -11,7 +11,7 @@
     <title>@ViewData["Title"] - Salon</title>
 
    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> --> 
-    
+    <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/animate.css">
     <link rel="stylesheet" href="~/css/default-assets/classy-nav.css">
@@ -29,14 +29,6 @@
     <link rel="stylesheet" href="~/css/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/css/audioplayer.css">
     <link rel="stylesheet" href="~/css/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/css/style.css">
-
-
-    <!-- Stylesheet
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HairSalonWeb.styles.css" asp-append-version="true" />
-    -->
 
 </head>
 
@@ -58,9 +50,9 @@
                         </div>
                     </div>
                     <div class="col-7">
-                        <div class="top-header-content text-right top-content-flex">
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Mon-Sat: 10.00 to 20.00 <span class="mx-2"></span> | <span class="mx-2"></span> <i class="fa fa-phone" aria-hidden="true"></i> Call us: (+12)-345-6789</p>
-                            <a class="login-form" href="./account">Log In</a>
+                        <div class="top-header-content text-right">
+                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> Mon-Sat: 8.00 to 17.00 <span class="mx-2"></span> | <span class="mx-2"></span> <i class="fa fa-phone" aria-hidden="true"></i> Call us: (+12)-345-6789</p>
+                            <a asp-controller="account" asp-action="logout"> Logout</a>
                         </div>
                         
                     </div>
@@ -94,18 +86,9 @@
                             <div class="classynav">
                                 <ul id="nav">
                                     <li><a href="./home">Home</a></li>
-                                    <li><a href="./about">About Us</a></li>
-                                    <li><a href="./service">Services</a></li>
-                                    <li><a href="./experts">Experts</a></li>
-                                    <li><a href="./portfolio">Portfolio</a></li>
+                                    <li><a href="./orders">Orders</a></li>
                                     <li><a href="./contact">Contact</a></li>
-                                   
                                 </ul>
-
-                                <!-- Book Icon -->
-                                <div class="book-now-btn ml-5 mt-4 mt-lg-0 ml-md-4">
-                                    <a href="./booking" class="btn akame-btn">Book Now</a>
-                                </div>
                             </div>
                             <!-- Nav End -->
                         </div>
