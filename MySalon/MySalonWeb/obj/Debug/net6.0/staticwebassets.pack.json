@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
     },
     {
+      "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\css\\salon.css",
+      "PackagePath": "staticwebassets\\css\\salon.css"
+    },
+    {
       "Id": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

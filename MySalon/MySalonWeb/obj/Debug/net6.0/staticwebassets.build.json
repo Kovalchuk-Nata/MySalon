@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8gABcGlYL9W3F/ITbn2bRoZcNXbrLj/VS85iZDlPdbg=",
+  "Hash": "5Q6qa93KQ6qKKWSMxmu1950EHmuIjm2Syezqkta8nF4=",
   "Source": "MySalonWeb",
   "BasePath": "_content/MySalonWeb",
   "Mode": "Default",
@@ -236,6 +236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\owl.carousel.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\css\\salon.css",
+      "SourceId": "MySalonWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\",
+      "BasePath": "_content/MySalonWeb",
+      "RelativePath": "css/salon.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\salon.css"
     },
     {
       "Identity": "C:\\Users\\Dell\\Desktop\\курсовая\\CW\\MySalon\\MySalon\\MySalonWeb\\wwwroot\\css\\site.css",

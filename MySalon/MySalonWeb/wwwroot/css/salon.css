@@ -1,0 +1,10 @@
+﻿
+.top-content-flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-form {
+    margin: 0 20px;
+    color: white;
+}
