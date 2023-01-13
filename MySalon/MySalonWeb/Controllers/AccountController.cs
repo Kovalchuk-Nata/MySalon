@@ -4,26 +4,28 @@ using Microsoft.AspNetCore.Mvc;
 using MySalonWeb.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using MySalonWeb.ViewModels;
 
 namespace MySalonWeb.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        
+
         [AllowAnonymous]
-        [Route("/account")]
-        public IActionResult Account()
+        public IActionResult Login()
         {
             ClaimsPrincipal claimsUser = HttpContext.User;
+
             if (claimsUser.Identity.IsAuthenticated)
-            { return RedirectToAction("welcome"); }
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
+
         [AllowAnonymous]
         [HttpPost]
-        // [Route("login")]
-        public async Task<IActionResult> Login(Account account)
+        public async Task<IActionResult> Login(AccountViewModel account)
         {
 
             if (account.Username == "admin" && account.Password == "123")
@@ -46,26 +48,15 @@ namespace MySalonWeb.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity), properties);
 
-                return RedirectToAction("welcome");
+                return RedirectToAction("Index", "Homes", new { area = "Admin" });
             }
 
             ViewData["ValidateMessage"] = "user not found";
             return View("/Error");
         }
 
-        [Route("welcome")]
-        public IActionResult Welcome()
-        {
-            return View("welcome");
-        }
 
-        [Route("orders")]
-        public IActionResult Orders()
-        {
-            return View();
-        }
-
-        public async Task<IActionResult> Logout(Account account)
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");

@@ -26,10 +26,7 @@ namespace MySalonWeb.Controllers
             salonDb = salonContext;
         }
 
-        [Route(" ")]
-        [Route("/")]
-        [Route("/home")]
-        [Route("[controller]/[action]")]
+        [Route("")]
         public IActionResult Index()
         {
             return View();
@@ -51,8 +48,8 @@ namespace MySalonWeb.Controllers
         [HttpPost]
         public IActionResult Booking(BookingViewModel bookingViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 Client client = bookingViewModel.Client;
                 var clientId = salonDb.Clients.FirstOrDefault(s => s.Phone == client.Phone)?.Id;
                 if (clientId == null)
@@ -66,12 +63,9 @@ namespace MySalonWeb.Controllers
                 order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
                 salonDb.Orders.Add(bookingViewModel.Order);
                 salonDb.SaveChanges();
-                Console.WriteLine("Success");
                 
-                return ReturnOrder(bookingViewModel);  //View(bookingViewModel);
-            //}
-            //Console.WriteLine("Fail");
-            //return View(bookingViewModel);
+            }
+            return View(bookingViewModel);
         }
 
         [Route("/booking/order")]

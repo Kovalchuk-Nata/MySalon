@@ -13,7 +13,7 @@ builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
-        option.LoginPath = "/Account/Account";
+        option.LoginPath = "/Account/Login";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
     });
 
@@ -61,14 +61,6 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     SupportedUICultures = supportedCultures
 });
 
-
-
-app.UseRouting();
-app.UseAuthorization();
-
-//app.MapControllerRoute(
-//    name: "MyArea",
-//    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
             name: "MyAreaAdmin",
