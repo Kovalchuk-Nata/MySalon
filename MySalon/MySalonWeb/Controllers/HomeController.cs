@@ -48,6 +48,9 @@ namespace MySalonWeb.Controllers
         [HttpPost]
         public IActionResult Booking(BookingViewModel bookingViewModel)
         {
+            var date = Convert.ToDateTime(bookingViewModel.Date);
+            bookingViewModel.Date = date.ToString("dd.MM.yyyy");
+
             if (ModelState.IsValid)
             {
                 Client client = bookingViewModel.Client;
@@ -164,7 +167,7 @@ namespace MySalonWeb.Controllers
         public PartialViewResult? ReturnOrder(BookingViewModel bookingViewModel)
         {
             ViewBag.ServiceType = bookingViewModel.ServiceType;
-            ViewBag.ServiceName = bookingViewModel.Order.Services.ServiceName;
+            ViewBag.ServiceName = bookingViewModel.Order.Services?.ServiceName;
             ViewBag.Date = bookingViewModel.Order.OrderDate;
             ViewBag.Time = bookingViewModel.Order.OrderTime;
 

@@ -8,11 +8,11 @@ namespace MySalonWeb.Models
 
         [Required(ErrorMessage = "Enter your name.")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required(ErrorMessage = "Enter your surename.")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
 
         [Required]
         [EmailAddress]
@@ -20,6 +20,6 @@ namespace MySalonWeb.Models
 
         [Required]
         public int Phone { get; set; }
-        public List<Order> Orders { get; set; }
+        public List<Order>? Orders { get; set; }
     }
 }

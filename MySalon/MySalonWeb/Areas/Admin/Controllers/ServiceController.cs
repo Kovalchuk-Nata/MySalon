@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MySalonWeb.Domain;
 using MySalonWeb.Models;
 
@@ -9,19 +8,19 @@ namespace MySalonWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]
-    public class OrdersController : Controller
+    public class ServiceController : Controller
     {
         private readonly SalonContext salonDb;
 
-        public OrdersController(SalonContext db)
+        public ServiceController(SalonContext db)
         {
             salonDb = db;
         }
 
         public ActionResult Index()
         {
-            var orders = salonDb.Orders.Include(o => o.Services);
-            return View(orders);
+            var services = salonDb.Services;
+            return View(services);
         }
 
         //GET
@@ -35,11 +34,11 @@ namespace MySalonWeb.Areas.Admin.Controllers
         //[Route("[action]")]
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Create(Order obj)
+        public IActionResult Create(Service obj)
         {
             if (ModelState.IsValid)
             {
-                salonDb.Orders.Add(obj);
+                salonDb.Services.Add(obj);
                 salonDb.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -54,24 +53,24 @@ namespace MySalonWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var orderId = salonDb.Orders.FirstOrDefault(c => c.Id == id); 
+            var serviseId = salonDb.Services.FirstOrDefault(c => c.Id == id); 
 
-            if (orderId == null)
+            if (serviseId == null)
             {
                 return NotFound();
             }
 
-            return View(orderId);
+            return View(serviseId);
         }
 
         //POST
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Edit(Order obj)
+        public IActionResult Edit(Service obj)
         {
             if (ModelState.IsValid)
             {
-                salonDb.Orders.Update(obj);  
+                salonDb.Services.Update(obj);  
                 salonDb.SaveChanges(true);
                 return RedirectToAction("Index");
             }
@@ -85,9 +84,9 @@ namespace MySalonWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var order = salonDb.Orders.FirstOrDefault(c => c.Id == id);
+            var service = salonDb.Services.FirstOrDefault(c => c.Id == id);
              
-            return View(order);
+            return View(service);
         }
 
 
@@ -96,13 +95,13 @@ namespace MySalonWeb.Areas.Admin.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult Delete(int id)
         {
-            var obj = salonDb.Orders.Find(id);
+            var obj = salonDb.Services.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            salonDb.Orders.Remove(obj);
+            salonDb.Services.Remove(obj);
             salonDb.SaveChanges();
             return RedirectToAction("Index");
         }

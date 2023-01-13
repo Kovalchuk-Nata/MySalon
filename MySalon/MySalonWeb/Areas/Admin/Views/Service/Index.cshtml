@@ -1,0 +1,29 @@
+﻿@using NonFactors.Mvc.Grid;
+@model IQueryable<Service>
+@{
+    ViewBag.Title = "Services";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-info">Create</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.ServiceType).Titled("Service Type");
+        columns.Add(model => model.ServiceName).Titled("Service Name");
+        columns.Add(model => model.Price).Titled("Price");
+        columns.Add(model => model.Period).Titled("Period");
+        columns.Add(model => $"<a class=\"btn btn-sm btn-primary\" href=\"Service\\Edit\\{model.Id}\">Edit</a>  " +
+            $"<a class=\"btn btn-sm  btn-danger\" href=\"Service\\Delete\\{model.Id}\">Delete</a>"
+            ).Encoded(false);
+
+    })
+    .Using(GridFilterMode.Row)
+    .Empty("No services")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+) 

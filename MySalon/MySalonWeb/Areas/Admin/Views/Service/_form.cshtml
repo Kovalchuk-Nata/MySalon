@@ -1,0 +1,26 @@
+﻿@using MySalonWeb.Models
+@model Service
+
+<div asp-validation-summary="All" class="text-danger"></div>
+ <div class="mb-3">
+    <label asp-for="ServiceType"></label>
+    <select asp-for="ServiceType" asp-items="Html.GetEnumSelectList<ServiceTypes>()" class="form-control">
+            </select>
+    <span asp-validation-for="ServiceType" class="text-danger"></span>
+        </div>
+<div class="mb-3">
+    <label asp-for="ServiceName"></label>
+    <input asp-for="ServiceName" class="form-control" />
+    <span asp-validation-for="ServiceName" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Price"></label>
+    <input asp-for="Price" class="form-control"></input>
+    <span asp-validation-for="Price" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Period"></label>
+    <input asp-for="Period" class="form-control"></input>
+    <span asp-validation-for="Period" class="text-danger"></span>
+</div>
+

@@ -13,7 +13,7 @@
     .Build(columns =>
     {
         columns.Add(model => model.ClientId).Titled("Client Id");
-        columns.Add(model => model.ServiceId).Titled("Service Id");
+        columns.Add(model => model.ServiceId).Titled("Service").RenderedAs(model => (model.Services != null ? model.Services.ServiceName : "Нет"));
         columns.Add(model => model.OrderDate).Titled("Order Date");
         columns.Add(model => model.OrderTime).Titled("Order Time");
         columns.Add(model => $"<a class=\"btn btn-sm btn-primary\" href=\"Orders\\Edit\\{model.Id}\">Edit</a>  " +
