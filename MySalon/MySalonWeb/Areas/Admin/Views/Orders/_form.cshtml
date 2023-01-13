@@ -1,0 +1,30 @@
+﻿@model Order
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="mb-3">
+    <label asp-for="ClientId"></label>
+    <input asp-for="ClientId" class="form-control" />
+    <span asp-validation-for="ClientId" class="text-danger"></span>
+</div>
+@* <div class="mb-3">
+            <label asp-for="RiskType"></label>
+            <select asp-for="RiskType" asp-items="Html.GetEnumSelectList<RiskTypes>()" class="form-control">
+            </select>
+            <span asp-validation-for="RiskType" class="text-danger"></span>
+        </div>*@
+<div class="mb-3">
+    <label asp-for="ServiceId"></label>
+    <input asp-for="ServiceId" class="form-control" />
+    <span asp-validation-for="ServiceId" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="OrderDate"></label>
+    <input type="date" asp-for="OrderDate" class="form-control"></input>
+    <span asp-validation-for="OrderDate" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="OrderTime"></label>
+    <textarea asp-for="OrderTime" class="form-control"></textarea>
+    <span asp-validation-for="OrderTime" class="text-danger"></span>
+</div>
+

@@ -1,0 +1,34 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>Удалить риск?</h1>
+
+<form method="post" asp-action="Delete">
+    <div class="border p-3 mt-4">
+        <input asp-for="Id" hidden />
+        <div class="mb-3">
+            <label asp-for="ClientId"></label>
+            <input asp-for="ClientId" class="form-control" />
+            <span asp-validation-for="ClientId"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ServiceId"></label>
+            <input asp-for="ServiceId" class="form-control" />
+            <span asp-validation-for="ServiceId"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="OrderDate"></label>
+            <input asp-for="OrderDate" class="form-control" />
+            <span asp-validation-for="OrderDate"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="OrderTime"></label>
+            <textarea asp-for="OrderTime" class="form-control"></textarea>
+            <span asp-validation-for="OrderTime"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Удалить</button>
+    </div>
+
+</form>

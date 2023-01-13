@@ -50,7 +50,7 @@ namespace MySalonWeb.Controllers
             }
 
             ViewData["ValidateMessage"] = "user not found";
-            return View();
+            return View("/Error");
         }
 
         [Route("welcome")]

@@ -39,12 +39,30 @@
     width: 300px;
 }
 
-    .btn-form:hover {
-        background-color: #bca858;
-        border-color: #bca858;
-    }
+.btn-form:hover {
+    background-color: #bca858;
+    border-color: #bca858;
+}
 
 .btn-form.disabled {
     background-color: black;
     border-color: black;
+}
+
+.karm-error {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+img-error {
+    max-width: 400px;
+}
+
+.account-form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
 }

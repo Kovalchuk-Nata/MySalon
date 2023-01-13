@@ -25,7 +25,11 @@ namespace MySalonWeb.Controllers
             _logger = logger;
             salonDb = salonContext;
         }
-        
+
+        [Route(" ")]
+        [Route("/")]
+        [Route("/home")]
+        [Route("[controller]/[action]")]
         public IActionResult Index()
         {
             return View();

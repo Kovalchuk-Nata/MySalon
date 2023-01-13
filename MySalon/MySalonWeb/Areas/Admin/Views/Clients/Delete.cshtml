@@ -1,0 +1,39 @@
+﻿@model Client
+@{
+    ViewData["Title"] = "Delete client";
+}
+
+<h1>Delete?</h1>
+
+<form method="post" asp-action="Delete">
+    <div class="border p-3 mt-4">
+        <input asp-for="Id" hidden />
+        <div class="mb-3">
+            <label asp-for="Id"></label>
+            <input asp-for="Id" class="form-control" />
+            <span asp-validation-for="Id"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Surname"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone"></label>
+            <textarea asp-for="Phone" class="form-control"></textarea>
+            <span asp-validation-for="Phone"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email"></label>
+            <textarea asp-for="Email" class="form-control"></textarea>
+            <span asp-validation-for="Email"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Удалить</button>
+    </div>
+
+</form>

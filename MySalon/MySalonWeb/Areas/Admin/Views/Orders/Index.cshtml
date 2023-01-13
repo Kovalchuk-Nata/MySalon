@@ -1,0 +1,29 @@
+﻿@using NonFactors.Mvc.Grid;
+@model IQueryable<Order>
+@{
+    ViewBag.Title = "Orders";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-info">Create</a>
+</p>
+
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.ClientId).Titled("Client Id");
+        columns.Add(model => model.ServiceId).Titled("Service Id");
+        columns.Add(model => model.OrderDate).Titled("Order Date");
+        columns.Add(model => model.OrderTime).Titled("Order Time");
+        columns.Add(model => $"<a class=\"btn btn-sm btn-primary\" href=\"Orders\\Edit\\{model.Id}\">Edit</a>  " +
+            $"<a class=\"btn btn-sm  btn-danger\" href=\"Orders\\Delete\\{model.Id}\">Delete</a>"
+            ).Encoded(false);
+
+    })
+    .Using(GridFilterMode.Row)
+    .Empty("No orders")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+) 
