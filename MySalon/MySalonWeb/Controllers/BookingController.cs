@@ -1,45 +1,42 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using MySalonWeb.Domain;
 using MySalonWeb.Models;
 using MySalonWeb.ViewModels;
+using System.Diagnostics;
+using System.Linq;
+using static System.Collections.Specialized.BitVector32;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
-namespace MySalonWeb.Areas.Admin.Controllers
+namespace MySalonWeb.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
-    public class OrdersController : Controller
+    public class BookingController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private readonly SalonContext salonDb;
 
-        public OrdersController(SalonContext db)
+
+        public BookingController(ILogger<HomeController> logger, SalonContext salonContext)
         {
-            salonDb = db;
+            _logger = logger;
+            salonDb = salonContext;
         }
 
-        public ActionResult Index()
-        {
-            var orders = salonDb.Orders.Include(o => o.Services);
-            return View(orders);
-        }
 
-        //GET
-        //[Route("[action]")]
-        public IActionResult Create()
+        [Route("/booking")]
+        public IActionResult Booking()
         {
             return View();
         }
 
-        //POST
-        //[Route("[action]")]
+        [Route("/booking")]
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Create(BookingViewModel bookingViewModel)
+        public IActionResult Booking(BookingViewModel bookingViewModel)
         {
-
             var date = Convert.ToDateTime(bookingViewModel.Date);
             bookingViewModel.Date = date.ToString("dd.MM.yyyy");
 
@@ -56,77 +53,23 @@ namespace MySalonWeb.Areas.Admin.Controllers
                 Order order = bookingViewModel.Order;
                 order.ClientId = clientId ?? client.Id;
                 order.OrderDate = Convert.ToDateTime(bookingViewModel.Date);
-                salonDb.Orders.Add(bookingViewModel.Order);
+                salonDb.Orders.Add(order);
                 salonDb.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ConfirmOrder", new { OrderId = order.Id });
             }
-
             return View(bookingViewModel);
-           
         }
 
-        //GET
-        //[Route("[action]")]
-        public IActionResult Edit(int? id)
+        [Route("/confirmOrder")]
+        //[HttpGet]
+        public IActionResult ConfirmOrder(string OrderId)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var orderId = salonDb.Orders.FirstOrDefault(c => c.Id == id); 
+            var orderList = salonDb.Orders.Where(o => o.Id == Int32.Parse(OrderId)).Include(o => o.Client).Include(o => o.Services).ToList();
+            var order = orderList.FirstOrDefault(o => o.Id == Int32.Parse(OrderId));
 
-            if (orderId == null)
-            {
-                return NotFound();
-            }
-
-            return View(orderId);
-        }
-
-        //POST
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Edit(Order obj)
-        {
-            if (ModelState.IsValid)
-            {
-                salonDb.Orders.Update(obj);  
-                salonDb.SaveChanges(true);
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-        //GET
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var order = salonDb.Orders.FirstOrDefault(c => c.Id == id);
-             
             return View(order);
         }
-
-
-        //POST
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult Delete(int id)
-        {
-            var obj = salonDb.Orders.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-
-            salonDb.Orders.Remove(obj);
-            salonDb.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
 
 
         [HttpGet, HttpPost]
@@ -135,7 +78,7 @@ namespace MySalonWeb.Areas.Admin.Controllers
 
             ViewBag.ServiceDictionary = new SelectList(salonDb.Services.Where(s => (int)s.ServiceType == Int32.Parse(id)), "Id", "ServiceName");
 
-            return PartialView("_PartViewCreate1");
+            return PartialView("_PartViewBooking1");
         }
 
         [HttpGet, HttpPost]
@@ -166,7 +109,7 @@ namespace MySalonWeb.Areas.Admin.Controllers
 
             foreach (var i in matchedItems)
             {
-
+                
                 if (listOfDate.Exists(item => item.OrderTime == i) == true)
                 {
                     result.Remove(i);
@@ -181,10 +124,9 @@ namespace MySalonWeb.Areas.Admin.Controllers
             });
 
             ViewBag.TimeDictionary = items;
-            return PartialView("_PartViewCreate2");
+            return PartialView("_PartViewBooking2");
         }
 
+
     }
-
 }
-

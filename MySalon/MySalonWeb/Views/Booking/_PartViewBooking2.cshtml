@@ -2,7 +2,6 @@
 @model BookingViewModel
 
 
-<div asp-validation-summary="All" class="text-time-name"></div>
 <div class="form-group">
     <label class="label-form">Choose time:</label>
     <select id="chooseTime" asp-for="@Model.Order.OrderTime" asp-items="@ViewBag.TimeDictionary" class="form-control label-form">

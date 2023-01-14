@@ -1,0 +1,16 @@
+﻿@model Order
+
+
+
+<div class="text-center mt-5 mb-5">
+    <h1>Thank You !</h1>
+    <h3>Your Order is confim!</h3>
+    <p>Service: @Model.Services.ServiceName </p>
+    <p>Date: @Model.OrderDate.ToString("dd.MM.yyyy") </p>
+    <p>Time: @(Model.OrderTime).00 </p>
+    <p>Price: @Model.Services.Price $ </p>
+    <p></p>
+
+</div>
+
+

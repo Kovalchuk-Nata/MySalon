@@ -1,7 +1,7 @@
 ﻿@using MySalonWeb.ViewModels;
 @model BookingViewModel
 
-    <div asp-validation-summary="All" class="text-service-name"></div>
+    
 <div class="form-group">
     <label class="label-form">Choose service:</label>
     <select asp-for="@Model.Order.ServiceId" asp-items="@ViewBag.ServiceDictionary" class="form-control label-form"> </select>

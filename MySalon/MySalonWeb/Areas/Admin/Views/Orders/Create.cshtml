@@ -1,15 +1,103 @@
-﻿@model Order
+﻿@using MySalonWeb.ViewModels
+@model BookingViewModel
 @{
     ViewData["Title"] = "Create order";
 }
 
 
 <form method="post">
-        <div cclass="border p-3 mt-4">
+    <div class="border p-3 mt-4" style="max-width: 500px;">
 
-        <partial name="_form" />
+        <partial name="_form_create" />
 
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button type="submit" id="submitOrder" class="btn btn-primary" style="width:150px" disabled>Create</button>
     </div>
 
 </form>
+
+@section scripts {
+    @{
+        <script>
+
+            $('#ServiceType').change(function () {
+                var select = (this);
+                var indexSelected = select.selectedIndex;
+                console.log('333');
+
+                $.ajax(
+                    {
+                        type: 'post',
+                        url: '@Url.Action("GetConfigForm", "Orders")?id=' + indexSelected,
+                        data: {},
+                        dataType: 'html',
+                        success: function (response) {
+                            $('#ServiceName').empty();
+                            $('#ServiceTime').empty();
+                            $('#ServiceName').append(response);
+                        },
+                        error: function (data) {
+                            console.log('error: ', data);
+                        }
+                    })
+
+
+            });
+
+
+            $(document).on('change', '#Order_ServiceId', function (e) {
+                var select = (this);
+                var indexSelected = select.selectedIndex;
+                var pickedDate = $("#date").val();
+                console.log(indexSelected);
+                console.log(pickedDate);
+                if (indexSelected && pickedDate != 0) {
+                    $.ajax(
+                        {
+                            type: 'post',
+                            url: '@Url.Action("GetTimeAndPrice", "Orders")?id=' + indexSelected + '&date=' + pickedDate,
+                            data: {},
+                            dataType: 'html',
+                            success: function (response) {
+                                $('#ServiceTime').empty();
+                                $('#ServiceTime').append(response);
+                            },
+                            error: function (data) {
+                                console.log('error: ', data);
+                            }
+                        })
+                }
+                else { console.log("Enter data or service"); }
+
+            });
+
+            $(document).on('change', '#date', function (e) {
+                var indexSelected = $('#Order_ServiceId').val();
+                var pickedDate = $("#date").val();
+                console.log(indexSelected);
+                console.log(pickedDate);
+                if (indexSelected && pickedDate != 0) {
+                    $.ajax(
+                        {
+                            type: 'post',
+                            url: '@Url.Action("GetTimeAndPrice", "Orders")?id=' + indexSelected + '&date=' + pickedDate,
+                            data: {},
+                            dataType: 'html',
+                            success: function (response) {
+                                $('#ServiceTime').empty();
+                                $('#ServiceTime').append(response);
+                            },
+                            error: function (data) {
+                                console.log('error: ', data);
+                            }
+                        })
+                }
+                else { console.log("Enter data or service"); }
+            });
+
+            $(document).on('change', '#chooseTime', function (e) {
+                $('#submitOrder').prop('disabled', !$(this).val());
+            }).trigger('change');
+
+        </script>
+    }
+}
