@@ -66,3 +66,7 @@ img-error {
     align-items: flex-start;
     justify-content: space-around;
 }
+
+.expert-flex {
+    justify-content: center;
+}

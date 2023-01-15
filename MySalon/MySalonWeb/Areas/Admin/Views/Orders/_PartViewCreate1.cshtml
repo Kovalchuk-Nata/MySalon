@@ -4,7 +4,9 @@
     <div asp-validation-summary="All" class="text-service-name"></div>
 <div class="form-group">
     <label class="label-form">Choose service:</label>
-    <select asp-for="Order.ServiceId" asp-items="@ViewBag.ServiceDictionary" class="form-control label-form"> </select>
+    <select asp-for="Order.ServiceId" asp-items="@ViewBag.ServiceDictionary" class="form-control label-form"> 
+        <option value="">Choose the time</option>
+    </select>
     </div>
 <div class="form-group">
     <label class="label-form">Choose date:</label>

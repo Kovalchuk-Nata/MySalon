@@ -1,7 +1,7 @@
 ﻿@using NonFactors.Mvc.Grid;
-@model IQueryable<Client>
+@model IQueryable<Expert>
 @{
-    ViewBag.Title = "Clients";
+    ViewBag.Title = "Experts";
 }
 
 <p>
@@ -12,13 +12,15 @@
     .Grid(Model)
     .Build(columns =>
     {
-        columns.Add(model => model.Id).Titled("Client Id");
+        columns.Add(model => model.Id).Titled("Id");
         columns.Add(model => model.Surname).Titled("Surname");
         columns.Add(model => model.Name).Titled("Name");
         columns.Add(model => model.Phone).Titled("Phone");
-        columns.Add(model => model.Email).Titled("Email");
-        columns.Add(model => $"<a class=\"btn btn-sm btn-primary\" href=\"Clients\\Edit\\{model.Id}\">Edit</a>  " +
-            $"<a class=\"btn btn-sm  btn-danger\" href=\"Clients\\Delete\\{model.Id}\">Delete</a>"
+        columns.Add(model => model.Birthday).Titled("Birthday");
+        columns.Add(model => model.ServiceType).Titled("ServiceType");
+
+        columns.Add(model => $"<a class=\"btn btn-sm btn-primary\" href=\"Experts\\Edit\\{model.Id}\">Edit</a>  " +
+            $"<a class=\"btn btn-sm  btn-danger\" href=\"Experts\\Delete\\{model.Id}\">Delete</a>"
             ).Encoded(false);
 
     })

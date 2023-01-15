@@ -1,6 +1,6 @@
-﻿@model Client
+﻿@model Expert
 @{
-    ViewData["Title"] = "Delete client";
+    ViewData["Title"] = "Delete expert?";
 }
 
 <h1>Delete?</h1>
@@ -25,13 +25,18 @@
         </div>
         <div class="mb-3">
             <label asp-for="Phone"></label>
-            <textarea asp-for="Phone" class="form-control"></textarea>
+            <input asp-for="Phone" class="form-control"></input>
             <span asp-validation-for="Phone"></span>
         </div>
         <div class="mb-3">
-            <label asp-for="Email"></label>
-            <textarea asp-for="Email" class="form-control"></textarea>
-            <span asp-validation-for="Email"></span>
+            <label asp-for="Birthday"></label>
+            <input type="date" asp-for="Birthday" class="form-control"></input>
+            <span asp-validation-for="Birthday"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ServiceType"></label>
+            <input asp-for="ServiceType" class="form-control"></input>
+            <span asp-validation-for="ServiceType"></span>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
     </div>
